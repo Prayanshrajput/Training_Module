@@ -44,7 +44,7 @@ export const Videoplayer = () => {
         setProgress(newTime);
       }
       else{
-        alert("forwording is not possible")
+        alert("It's not possible")
       }
  
 
@@ -68,8 +68,8 @@ export const Videoplayer = () => {
     };
   
     return (
-      <div className="flex w-screen h-screen justify-center items-center ">
-        <div ref={videoRef} className="flex flex-col justify-center items-center w-[70%] h-[50%] border border-black">
+      <div className="flex w-[600px] h-[600px] justify-center items-center ">
+        <div ref={videoRef} className="flex flex-col justify-center items-center w-[70%] h-[50%] border border-white bg-slate-500">
         <ReactPlayer
           url="/Video1.mp4"
           ref={playerRef}
@@ -78,11 +78,12 @@ export const Videoplayer = () => {
           volume={volume}
           onProgress={handleProgress}
           controls={false}  
-        className="flex w-full h-full"
+        className="flex w-[100px] h-[100px]"
+        // wrapperStyle={{ position: 'relative', width: '100%', height: '450px' }}
         />
   
        
-        <div className="flex gap-5 bg-slate-400 w-full h-full">
+        <div className="flex gap-5 bg-slate-400 w-[152%] h-full">
           
           <button onClick={handleBackward}><TbRewindBackward10 size={24} ></TbRewindBackward10></button>
           <button onClick={handlePlayPause}>

@@ -11,7 +11,16 @@ function App() {
   return(
     <div>
       {/* <Save_video></Save_video> */}
-      {/* <Module></Module> */}
+      <Module modelheading={"Personal Protective Equipment (PPE)"}
+      firstheading={"Importance of PPE"}
+      firstcon={"Explain the significance of PPE in preventing injuries and illnesses in the workplace."}
+      secondheading={"Types of PPE"}
+      secondcon={"Introduce various types of PPE, such as hard hats, safety glasses, gloves, earplugs, respirators, and steel-toed boots."}
+      thirdheading={"Proper Use and Maintenance"}
+      thirdcon={"Demonstrate how to properly use and maintain PPE, including inspection procedures and storage guidelines."}
+      nextModule_no={2}
+      nextModule={"kjkjkljkl"}
+      ></Module>
       <Videoplayer></Videoplayer>
     </div>
   )
