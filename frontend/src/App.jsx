@@ -11,7 +11,7 @@ function App() {
   return(
     <div>
       {/* <Save_video></Save_video> */}
-      <Module></Module>
+      {/* <Module></Module> */}
       <Videoplayer></Videoplayer>
     </div>
   )

@@ -13,6 +13,7 @@ export const Videoplayer = () => {
     const [muted, setMuted] = useState(false);
     const [volume, setVolume] = useState(0.8);
     const[seekbar,setseekbar]=useState(0)
+    const [progress, setProgress] = useState(0);
   
     const handlePlayPause = () => {
       setPlaying(!playing);
@@ -33,6 +34,26 @@ export const Videoplayer = () => {
     const handleVolumeChange = (event) => {
       setVolume(parseFloat(event.target.value));
     };
+
+
+
+    const handleSeek = (e) => {
+      const newTime = parseFloat(e.target.value);
+      if(newTime<=progress){
+        playerRef.current.seekTo(newTime, 'fraction');
+        setProgress(newTime);
+      }
+      else{
+        alert("forwording is not possible")
+      }
+ 
+
+    };
+    
+    
+    const handleProgress = (state) => {
+      setProgress(state.played);
+    };
   
     const enterFullScreen = () => {
       if (videoRef.current.requestFullscreen) {
@@ -48,15 +69,16 @@ export const Videoplayer = () => {
   
     return (
       <div className="flex w-screen h-screen justify-center items-center ">
-        <div ref={videoRef} className="flex flex-col justify-center items-center w-[70%] h-[50%] border border-white bg-slate-500">
+        <div ref={videoRef} className="flex flex-col justify-center items-center w-[70%] h-[50%] border border-black">
         <ReactPlayer
           url="/Video1.mp4"
           ref={playerRef}
           playing={playing}
           muted={muted}
           volume={volume}
+          onProgress={handleProgress}
           controls={false}  
-        className="flex w-screen h-[95%]"
+        className="flex w-full h-full"
         />
   
        
@@ -74,15 +96,19 @@ export const Videoplayer = () => {
             value={volume}
             onChange={handleVolumeChange}
           />
-          <input
-            type="range"
-            min="0"
-            max="1"
-            step="0.01"
-            value={seekbar}
-            className="flex w-[60%]"
-          />
+          
+         <input
+          type="range"
+          className="flex w-[60%]"
+          min="0"
+          max="1"
+          step="0.01"
+          value={progress}
+          onChange={handleSeek}
+        />
+        
           <button onClick={enterFullScreen}><MdFullscreen size={24}/></button>
+          
         </div>
       </div>
       </div>

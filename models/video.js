@@ -1,6 +1,5 @@
 const mongoose=require("mongoose")
 
-
 const video=new mongoose.Schema({
   data:{
     type:String,
@@ -15,7 +14,5 @@ const video=new mongoose.Schema({
     require:true
   },
 })
-
-
 
 module.exports=mongoose.model("video",video)
