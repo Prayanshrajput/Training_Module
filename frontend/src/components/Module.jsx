@@ -5,7 +5,7 @@ import { Datacontext } from '../context/Datacontext';
 
 
 export const Module = (prop) => {
-  const{progress,complete_progress,setcomplete_progress}=useContext(Datacontext)
+  const{progress,complete_progress,setcomplete_progress,ind,setind}=useContext(Datacontext)
  
    
     if(progress*100>complete_progress){
@@ -18,7 +18,7 @@ export const Module = (prop) => {
         <div className="flex w-[90%] h-full">
         <div className="flex flex-col gap-5 w-[50%] items-center ">
             <div className="flex w-[100%] mt-[10%]  text-[28px] font-semibold ">
-                <div>Module {1}:</div>
+                <div>Module {ind+1}:</div>
                 <div>{prop.modelheading}</div>  
             </div>
 
@@ -53,7 +53,7 @@ export const Module = (prop) => {
             <div className="flex justify-center   w-fit h-fit mt-5">
             <div>Module {prop.nextModule_no} :</div>
                 <div>{prop.nextModule}</div>
-                <div className=" flex justify-center items-center ml-2 mr-2 w-[30px] h-[30px] rounded-full  bg-blue-400">
+                <div onClick={()=>(setind(ind+1))} className=" flex justify-center items-center ml-2 mr-2 w-[30px] h-[30px] rounded-full  bg-blue-400">
                     <GrLinkNext size={24}></GrLinkNext>
                 </div>
             </div>

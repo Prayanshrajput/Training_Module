@@ -8,6 +8,7 @@ export default function DatacontextProvider({children}){
     const[data,setdata]=useState([])
     const[progress, setProgress]=useState(0)
     const[complete_progress,setcomplete_progress]=useState(0)
+    const[ind,setind]=useState(0)
    
 
 useEffect(()=>{
@@ -16,9 +17,10 @@ useEffect(()=>{
 
 const fetchquize=async()=>{
     try{
-const response= await fetch(`${window.location.origin}/fetchquiz`)
-const data= await response.json();
- setdata(data.message)
+const response= await fetch("http://localhost:8000/fetchmodules")
+const temp= await response.json();
+ setdata(temp.data)
+ console.log(temp.data)
     }
     catch(error){
         console.log(error)
@@ -30,7 +32,8 @@ const data= await response.json();
 const value={
    data,setdata,
    progress, setProgress,
-   complete_progress,setcomplete_progress
+   complete_progress,setcomplete_progress,
+   ind,setind
 }
 
 return <Datacontext.Provider value={value}>
