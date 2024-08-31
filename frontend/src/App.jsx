@@ -19,9 +19,9 @@ function App() {
       thirdheading={"Proper Use and Maintenance"}
       thirdcon={"Demonstrate how to properly use and maintain PPE, including inspection procedures and storage guidelines."}
       nextModule_no={2}
-      nextModule={"kjkjkljkl"}
+      nextModule={"Fire Safety and Prevention"}
       ></Module>
-      <Videoplayer></Videoplayer>
+      {/* <Videoplayer></Videoplayer> */}
     </div>
   )
 }

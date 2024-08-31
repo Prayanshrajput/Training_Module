@@ -1,9 +1,10 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import { useRef,useEffect, useState } from 'react'
 import ReactPlayer from 'react-player';
 import { TbRewindBackward10 } from "react-icons/tb";
 import { FaPause, FaPlay } from 'react-icons/fa';
 import { MdFullscreen } from 'react-icons/md';
+import { Datacontext } from '../context/Datacontext';
 
 export const Videoplayer = () => {
 
@@ -13,7 +14,8 @@ export const Videoplayer = () => {
     const [muted, setMuted] = useState(false);
     const [volume, setVolume] = useState(0.8);
     const[seekbar,setseekbar]=useState(0)
-    const [progress, setProgress] = useState(0);
+    // const [progress, setProgress] = useState(0);
+    const {progress, setProgress,complete_progress}=useContext(Datacontext)
   
     const handlePlayPause = () => {
       setPlaying(!playing);
@@ -39,12 +41,13 @@ export const Videoplayer = () => {
 
     const handleSeek = (e) => {
       const newTime = parseFloat(e.target.value);
+
       if(newTime<=progress){
         playerRef.current.seekTo(newTime, 'fraction');
-        setProgress(newTime);
+         setProgress(newTime);
       }
       else{
-        alert("It's not possible")
+        alert("forworing is not possible")
       }
  
 
@@ -52,7 +55,11 @@ export const Videoplayer = () => {
     
     
     const handleProgress = (state) => {
-      setProgress(state.played);
+      
+        if(progress<state.played){
+          setProgress(state.played);
+        }
+     
     };
   
     const enterFullScreen = () => {
@@ -71,7 +78,7 @@ export const Videoplayer = () => {
       <div className="flex w-[600px] h-[600px] justify-center items-center ">
         <div ref={videoRef} className="flex flex-col justify-center items-center w-[70%] h-[50%] border border-white bg-slate-500">
         <ReactPlayer
-          url="/Video1.mp4"
+          url="/Video2.mp4"
           ref={playerRef}
           playing={playing}
           muted={muted}

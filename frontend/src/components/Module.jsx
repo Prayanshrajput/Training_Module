@@ -1,10 +1,18 @@
-import React from 'react'
+import React, { useContext, useState } from 'react'
 import { Videoplayer } from './Videoplayer'
 import { GrLinkNext } from "react-icons/gr";
+import { Datacontext } from '../context/Datacontext';
 
 
 export const Module = (prop) => {
-    const progress=100
+  const{progress,complete_progress,setcomplete_progress}=useContext(Datacontext)
+ 
+   
+    if(progress*100>complete_progress){
+       setcomplete_progress(progress*100)
+    }
+
+    
   return (
     <div className="flex w-screen h-screen justify-center items-center">
         <div className="flex w-[90%] h-full">
@@ -31,7 +39,7 @@ export const Module = (prop) => {
             <div className="flex w-full h-[20%] justify-end pt-[3%] mr-5 ">
                 <div className="flex justify-center items-center rounded-full h-[100px] w-[100px] bg-blue-300">
                     <div className="flex justify-center items-center rounded-full h-[80px] w-[80px] bg-white">
-                        2%
+                       {(complete_progress>progress && Math.floor(complete_progress)) || (Math.floor(progress*100))}%
                     </div>
                 </div>
             </div>
@@ -41,9 +49,9 @@ export const Module = (prop) => {
             <Videoplayer></Videoplayer>
             </div>
 
-            <div className="flex w-full justify-end pr-5">
+            <div className="flex w-full justify-end pr-5 font-semibold">
             <div className="flex justify-center   w-fit h-fit mt-5">
-            <div>{prop.nextModule_no} :</div>
+            <div>Module {prop.nextModule_no} :</div>
                 <div>{prop.nextModule}</div>
                 <div className=" flex justify-center items-center ml-2 mr-2 w-[30px] h-[30px] rounded-full  bg-blue-400">
                     <GrLinkNext size={24}></GrLinkNext>
